@@ -26,18 +26,25 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: mysql:5.6
+      - image: lernen/demo_db
         name: mysql
         env:
           # Use secret in real usage
         - name: MYSQL_ROOT_PASSWORD
-          value: password
+          value: my-secret-pw
+        - name: MYSQL_DATABASE
+          value: demo_db
+        - name: MYSQL_USER
+          value: sqluser
+        - name: MYSQL_PASSWORD
+          value: sqlpasswd
         ports:
         - containerPort: 3306
           name: mysql
         volumeMounts:
-        - name: mysql-persistent-storage
+        - name: mysql-ephemeral-storage
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-persistent-storage
+        # normally, one would use a persistent storage... this is a demo !
+      - name: mysql-ephemeral-storage
         emptyDir: {}
