@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubernetesdemoqueuelistener
+spec:
+  ports:
+  - port: 8080
+  selector:
+    app: kubernetesdemoqueuelistener
+  type: LoadBalancer
+---
+#v1 for version >= 1.10
+apiVersion: apps/v1beta2 
+kind: Deployment
+metadata:
+  name: kubernetesdemoqueuelistener
+spec:
+  selector:
+    matchLabels:
+      app: kubernetesdemoqueuelistener
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: kubernetesdemoqueuelistener
+    spec:
+      containers:
+      - image: lernen/kubernetesdemoqueuelistener
+        name: kubernetesdemoqueuelistener
