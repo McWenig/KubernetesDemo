@@ -38,4 +38,4 @@ spec:
     spec:
       containers:
       - image: rabbitmq:3-management
-        name: rabbit_container
+        name: rabbit-container
