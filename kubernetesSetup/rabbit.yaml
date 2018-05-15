@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbit_container
+spec:
+  ports:
+  - port: 5672
+  selector:
+    app: rabbit_container
+  type: ClusterIp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbit_managment
+spec:
+  ports:
+  - port: 15672
+  selector:
+    app: rabbit_container
+  type: LoadBalancer
+---
+#v1 for version >= 1.10
+apiVersion: apps/v1beta2 
+kind: Deployment
+metadata:
+  name: rabbit_container
+spec:
+  selector:
+    matchLabels:
+      app: rabbit_container
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: rabbit_container
+    spec:
+      containers:
+      - image: rabbitmq:3-management
+        name: rabbit_container
