@@ -5,7 +5,7 @@ CREATE TABLE  act (
 name Varchar(128) not null
 );
 
-CREATE TABLE  protocoll (
+CREATE TABLE  protocol (
 `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name Varchar(128) not null,
 act_id INT,
@@ -19,10 +19,10 @@ insert into act set name='test2';
 insert into act set name='test3';
 insert into act set name='test4';
 
-insert into protocoll (name, act_id) select name,id from act where name='test1';
-insert into protocoll (name, act_id) select name,id from act where name='test2';
-insert into protocoll (name, act_id) select name,id from act where name='test3';
-insert into protocoll (name, act_id) select name,id from act where name='test4';
+insert into protocol (name, act_id) select name,id from act where name='test1';
+insert into protocol (name, act_id) select name,id from act where name='test2';
+insert into protocol (name, act_id) select name,id from act where name='test3';
+insert into protocol (name, act_id) select name,id from act where name='test4';
 
 select * From act;
-select * from protocoll;
+select * from protocol;
