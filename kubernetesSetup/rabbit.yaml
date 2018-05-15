@@ -7,7 +7,7 @@ spec:
   - port: 5672
   selector:
     app: rabbit-container
-  type: ClusterIp
+  type: ClusterIP
 ---
 apiVersion: v1
 kind: Service
