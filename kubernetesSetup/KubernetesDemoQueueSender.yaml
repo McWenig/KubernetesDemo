@@ -7,7 +7,7 @@ spec:
   - port: 8080
   selector:
     app: kubernetesdemoqueuesender
-  type: LoadBalancer
+  type: ClusterIP
 ---
 #v1 for version >= 1.10
 apiVersion: apps/v1beta2 
